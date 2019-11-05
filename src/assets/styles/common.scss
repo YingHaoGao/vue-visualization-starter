@@ -1,0 +1,26 @@
+.hairline{
+  height: 30px;
+  position: relative;
+  &::after {
+    content: ' ';
+    position: absolute;
+    pointer-events: none;
+    box-sizing: border-box;
+    top: 50%;
+    left: 0;
+    right: 0;
+    border: 0 solid #eee;
+    border-top-width: 1px;
+  }
+}
+.flex-row, .flex-column{
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  flex-basis: auto;
+  box-sizing: border-box;
+  min-width: 0;
+}
+.flex-column{
+  flex-direction: column;
+}

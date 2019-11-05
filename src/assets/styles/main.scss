@@ -1,0 +1,38 @@
+body{
+  margin: 0;
+}
+.lx-no-data{
+  text-align: center;
+  padding:  40px;
+  font-weight: 300;
+  font-size: 18px;
+}
+.lx-no-view{
+  text-align: center;
+  padding:  20px;
+  font-weight: 300;
+  font-size: 18px;
+}
+.lx-no-item{
+  text-align: center;
+  padding:  5px;
+  font-weight: 300;
+  font-size: 16px;
+}
+.no-horizontal{
+  >.el-scrollbar__wrap{
+    overflow-x: auto;
+  }
+}
+.el-dialog__body{
+  padding: 15px;
+}
+.el-dialog__header{
+  padding: 15px;
+  background: rgba($color: #EEE, $alpha: 0.6);
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+}
+.el-dialog__headerbtn{
+  top: 18px;
+}

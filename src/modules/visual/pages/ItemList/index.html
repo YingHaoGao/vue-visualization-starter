@@ -1,0 +1,68 @@
+<div class="container">
+  <div class="header">
+    <selector ref="selector" :isManager="isManager"/>
+  </div>
+  <div class="list">
+    <el-scrollbar class="no-horizontal" style="height:100%">
+      <el-collapse class="list-wrp" :class="`listmode-${listMode}`" v-model="activeCatalogIds" v-loading="loading">
+        <el-collapse-item :name="catalog.id" v-for="(catalog,index) in componentList" :key="catalog.id" v-if="!(!isManager&&!catalog.children.length)" >
+          <template slot="title">
+            <div class="item-group-title" @click.stop="()=>{}">
+              <span v-if="editTitleIndex!==index"> {{catalog.title}} </span>
+              <el-input
+                v-if="editTitleIndex===index"
+                placeholder="请输入分类名称"
+                v-model.trim="editTitle"
+                size="mini"
+                style="display:inline-block;width:100px;"
+                @blur.stop="onUpdateCatalog(catalog)"
+                @keyup.enter.native.stop="onUpdateCatalog(catalog)"
+                :ref="`editTitle${index}`"/>
+              <a href="javascript:;" v-show="catalog.id!='none'&&catalog.id!='0'" v-if="isManager" @click.stop="onEditCatalog(index,catalog)"><i class="el-icon-edit"></i></a>
+            </div>
+          </template>
+          <div class="items">
+            <el-row :gutter="30" v-if="catalog.children.length">
+              <el-col :xl="4" :lg="6" :md="8" :sm="12" :xs="24"
+                v-for="(item, index) in catalog.children" :key="`${item.componentKey}-${item.id}-${index}`">
+                <div class="card" :class="{active:item.id===activeItem.id}" @click.stop="onChooseItem(item)">
+                  <div class="card-cover">
+                    <img v-if="item.cover" :src="API_BASE_URL+item.cover" alt="">
+                    <i v-else class="el-icon-picture"></i>
+                  </div>
+                  <div class="card-body">
+                    <h4 :title="item.title + item.componentKey">{{item.title}} {{item.componentKey}}</h4>
+                    <p :title="item.description">{{item.description}}</p>
+                    <div class="card-handler" v-if="isManager">
+                      <a href="javascript:;" @click.stop="onDeleteItem(item)" v-if="item.id && $permission('delete:/component')"><i class="el-icon-delete"></i></a>
+                      <a href="javascript:;" @click.stop="onToolbar(item)" v-if="item.id && $permission('put:/component')"><i class="el-icon-setting"></i></a>
+                      <a href="javascript:;" @click.stop="onToolbar(item)" v-if="!item.id && $permission('post:/component')"><i class="el-icon-plus"></i></a>
+                    </div>
+                  </div>
+                  <div class="invalid" v-if="!item.componentKey&&isManager">
+                    <h4>组件已失去关联</h4>
+                    <el-button type="danger" plain size="mini" @click.stop="onDeleteItem(item)" v-if="$permission('delete:/component')">删除</el-button>
+                    <!-- <el-button type="primary" plain size="mini" @click.stop="onToolbar(item, index)">重新关联</el-button> -->
+                  </div>
+                </div>
+              </el-col>
+            </el-row>
+            <div v-else>
+              <el-alert
+                title="该类别无组件"
+                type="info"
+                style="max-width: 140px;"
+                center
+                :closable="false">
+              </el-alert>
+            </div>
+          </div>
+        </el-collapse-item>
+      </el-collapse>
+    </el-scrollbar>
+  </div>
+  <div v-if="!Object.keys(componentList).length" class="lx-no-data">没有找到组件</div>
+  <BackToTop/>
+  <toolbar v-if="isManager" :isManager="isManager" ref="toolbar"/>
+  <preview v-if="isManager" ref="preview"/>
+</div>

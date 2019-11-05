@@ -1,0 +1,61 @@
+/*slide-down*/
+.slide-down-enter-active, .slide-down-leave-active{
+  transition: transform 0.3s ease-in-out 0s
+}
+.slide-down-enter, .slide-down-leave-to{
+  transform: translateY(-100%)
+}
+/*fade-transform*/
+.fade-transform-leave-active,
+.fade-transform-enter-active {
+  transition: all .3s;
+}
+.fade-transform-enter {
+  opacity: 0;
+  transform: translateX(-30px);
+}
+.fade-transform-leave-to {
+  opacity: 0;
+  transform: translateX(30px);
+}
+/*breadcrumb transition*/
+.breadcrumb-enter-active,
+.breadcrumb-leave-active {
+  transition: all .4s;
+}
+.breadcrumb-enter,
+.breadcrumb-leave-active {
+  opacity: 0;
+  transform: translateX(20px);
+}
+.breadcrumb-move {
+  transition: all .4s;
+}
+.breadcrumb-leave-active {
+  position: absolute;
+}
+// sidebar
+.sidebar-enter-active, .sidebar-leave-active {
+  transition: transform .3s;
+}
+.sidebar-enter, .sidebar-leave-to {
+  transform: translateX(100%);
+}
+// scale
+.scale-enter-active,
+.scale-leave-active {
+  transition: all .3s;
+}
+.scale-enter,
+.scale-leave-active {
+  opacity: 0;
+  transform: scale(0.7);
+}
+// opacity
+.opacity-leave-active,
+.opacity-enter-active {
+  transition: all .4s;
+}
+.opacity-enter, .opacity-leave-to {
+  opacity: 0;
+}

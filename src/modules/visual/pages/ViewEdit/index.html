@@ -1,0 +1,13 @@
+<section class="container">
+  <div class="view-container" :style="{right: visibleSidebar ? '60px': 0,'min-height':'105px'}" v-loading="loading">
+    <el-scrollbar ref="scrollbar" class="no-horizontal" style="height:100%" v-if="config.templateKey">
+      <smart-view :config="config" mode="editor"></smart-view>
+    </el-scrollbar>
+  </div>
+  <a class="sidebar-btn" v-show="!visibleSidebar&&config.templateKey" @click="openSidebar"><i class="el-icon-menu"></i></a>
+  <sidebar ref="sidebar" :isSaving="isSaving" :visible="visibleSidebar"/>
+  <toolbar ref="toolbar" :isSaving="isSaving"/>
+  <item-toolbar :isManager="isManager" ref="itemToolbar"/>
+  <mould-list ref="mouldList"/>
+  <item-list ref="itemList"/>
+</section>
