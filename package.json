@@ -11,7 +11,7 @@
     "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.18.1",
     "clone": "^2.1.2",
     "element-resize-detector": "^1.1.15",
     "element-ui": "^2.4.9",
