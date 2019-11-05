@@ -16,7 +16,7 @@
     "element-resize-detector": "^1.1.15",
     "element-ui": "^2.4.9",
     "js-base64": "^2.4.9",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.13",
     "mockjs": "^1.0.1-beta3",
     "screenfull": "^4.2.0",
     "velocity-animate": "^1.5.2",
